@@ -9,14 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
-    "next": "13.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "firebase": "^9.19.1",
+    "firebase-admin": "^11.6.0",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-firebase-hooks": "^5.1.1",
     "typescript": "5.0.4"
   }
 }
