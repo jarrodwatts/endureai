@@ -1,7 +1,13 @@
-import styles from "@/styles/Home.module.css";
 import { useDocumentData } from "react-firebase-hooks/firestore";
 import { DocumentReference, doc } from "firebase/firestore";
 import { firestore } from "@/lib/firebase/initFirebaseClient";
+import styles from "@/styles/Home.module.css";
+import Header from "@/components/landing/Header/Header";
+import Content from "@/components/landing/Content/Content";
+import Diagram from "@/components/landing/Diagram/Diagram";
+import Actions from "@/components/landing/Actions/Actions";
+import Pricing from "@/components/landing/Pricing/Pricing";
+import Footer from "@/components/landing/Footer/Footer";
 
 interface Test {
   hey: string;
@@ -15,13 +21,15 @@ export default function Home() {
   console.log({ value, loading, error });
 
   return (
-    <>
-      <h1>hello</h1>
-      <p>
-        {!!error && <code>error</code>}
-        {!!loading && <code>loading</code>}
-        {!!value && <code>value</code>}
-      </p>
-    </>
+    <div className={styles.body}>
+      <section id="hero" className={styles.hero}>
+        <Header />
+        <Content />
+      </section>
+
+      <Diagram />
+      <Pricing />
+      <Footer />
+    </div>
   );
 }

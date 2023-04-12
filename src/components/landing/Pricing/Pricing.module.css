@@ -1,0 +1,246 @@
+.pricing {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: linear-gradient(360deg, #4f4a9c 0%, #b86da5 100%);
+  color: var(--white);
+}
+
+.content {
+  color: var(--white);
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 720px;
+  padding: var(--largePadding) 0;
+  text-align: center;
+}
+
+.content h2 {
+  color: var(--white);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.content h2 img {
+  color: var(--white);
+  text-align: center;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-right: 12px;
+}
+
+.plans {
+  color: var(--white);
+  text-align: center;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  max-width: 720px;
+  font-size: 0;
+  margin: var(--mediumPadding) auto 0;
+}
+
+.plan {
+  color: var(--white);
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 40px;
+  background: #fff;
+  width: 55%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 24px 40px rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.discounted {
+  text-align: left;
+  font-size: 36px;
+  line-height: 44px;
+  color: var(--black);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+  text-decoration: line-through;
+  opacity: 0.32;
+  font-weight: 700;
+}
+
+.newPrice {
+  text-align: left;
+  font-size: 36px;
+  line-height: 44px;
+  color: var(--black);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 900;
+}
+
+.sub {
+  text-align: left;
+  font-weight: 900;
+  color: var(--black);
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 18px;
+  line-height: 24px;
+  vertical-align: bottom;
+  display: inline-block;
+  padding: 0 0 4px 6px;
+}
+
+.details {
+  color: var(--white);
+  font-size: 0;
+  text-align: left;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.plans .plan h4 {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--purple);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plans .plan h3 {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  color: var(--black);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.plans .plan h5 {
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--green);
+  background: rgba(27, 196, 125, 0.16);
+  padding: 8px 16px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.features {
+  color: var(--white);
+  font-size: 0;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.plans .plan ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: block;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.plans .plan ul li:before {
+  content: "";
+  display: inline-block;
+  vertical-align: text-top;
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.0607 7.06066C21.6464 6.47487 21.6464 5.52513 21.0607 4.93934C20.4749 4.35355 19.5251 4.35355 18.9393 4.93934L21.0607 7.06066ZM9 17L7.93934 18.0607C8.52513 18.6464 9.47487 18.6464 10.0607 18.0607L9 17ZM5.06066 10.9393C4.47487 10.3536 3.52513 10.3536 2.93934 10.9393C2.35355 11.5251 2.35355 12.4749 2.93934 13.0607L5.06066 10.9393ZM18.9393 4.93934L7.93934 15.9393L10.0607 18.0607L21.0607 7.06066L18.9393 4.93934ZM10.0607 15.9393L5.06066 10.9393L2.93934 13.0607L7.93934 18.0607L10.0607 15.9393Z' fill='%237B61FF'/%3E%3C/svg%3E%0A");
+}
+
+.btn {
+  color: var(--white);
+  font-size: 0;
+  text-align: left;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 0 24px 24px;
+}
+
+.btn a {
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  padding: 12px 24px;
+  background: var(--purple);
+  color: var(--white);
+  border-radius: 48px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
