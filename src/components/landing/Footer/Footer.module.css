@@ -23,7 +23,8 @@
   text-align: center;
   z-index: 2;
   position: relative;
-  width: 960px;
+  max-width: 960px;
+  padding: var(--largePadding) 4px;
 }
 
 .title {
@@ -123,7 +124,9 @@
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  width: 960px;
+  max-width: 960px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

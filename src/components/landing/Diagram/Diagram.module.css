@@ -15,8 +15,8 @@
   text-decoration: none;
   box-sizing: border-box;
   margin: 0 auto;
-  width: 720px;
-  padding: var(--largePadding) 0;
+  max-width: 720px;
+  padding: var(--largePadding) 4px;
   text-align: center;
 }
 

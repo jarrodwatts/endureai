@@ -7,6 +7,8 @@
   height: 100%;
   color: var(--black);
   background-color: var(--white);
+  display: flex;
+  flex-direction: column;
 }
 
 .hero {
