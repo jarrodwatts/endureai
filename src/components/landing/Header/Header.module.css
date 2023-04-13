@@ -8,6 +8,8 @@
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
   animation-name: fadeInDown;
+  padding-left: 4%;
+  padding-right: 4%;
 }
 
 .inner {

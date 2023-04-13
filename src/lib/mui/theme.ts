@@ -24,6 +24,39 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: inter.style.fontFamily,
+    button: {
+      textTransform: "none",
+    },
+    h1: {
+      fontSize: "4rem",
+      lineHeight: 1.1,
+      fontWeight: 700,
+      letterSpacing: "-.05em",
+      color: "#010101",
+    },
+    h2: {
+      letterSpacing: "-.025em",
+      fontWeight: 700,
+      fontSize: "3rem",
+    },
+    h3: {
+      fontWeight: 600,
+      fontSize: "2rem",
+      lineHeight: 1.75,
+    },
+    h4: {
+      fontWeight: 300,
+      fontSize: 20,
+      lineHeight: 1.6,
+    },
+    body1: {
+      fontSize: "1.125rem",
+      lineHeight: 1.75,
+    },
+    body2: {
+      fontSize: "1rem",
+      lineHeight: 1.75,
+    },
   },
   components: {},
 });

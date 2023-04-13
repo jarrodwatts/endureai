@@ -14,7 +14,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <Link href="/signup" className={styles.button}>
+          <Link href="/login" className={styles.button}>
             <span>Get Started for Free</span>
           </Link>
         </div>

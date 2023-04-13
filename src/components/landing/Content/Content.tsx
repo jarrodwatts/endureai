@@ -11,7 +11,7 @@ export default function Content() {
         </p>
       </div>
 
-      <Link href="/signup" className={styles.button}>
+      <Link href="/login" className={styles.button}>
         <span>Get Started (Free)</span>
       </Link>
 
