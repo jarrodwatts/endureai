@@ -7,7 +7,7 @@
   padding: var(--mediumPadding) 0;
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
-  animation-name: fadeInDown;
+  /* animation-name: fadeInDown; */
   padding-left: 4%;
   padding-right: 4%;
 }
@@ -18,7 +18,7 @@
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  width: 960px;
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -94,4 +94,11 @@
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
+}
+
+.profileIcon {
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+  margin-bottom: -10px;
 }

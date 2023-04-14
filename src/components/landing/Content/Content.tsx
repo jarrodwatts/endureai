@@ -1,7 +1,10 @@
 import Link from "next/link";
 import styles from "./Content.module.css";
+import { useAuthContext } from "@/lib/context/AuthContext";
 
 export default function Content() {
+  const { user, loading } = useAuthContext();
+
   return (
     <div className={styles.content}>
       <div className={styles.description}>
@@ -12,7 +15,9 @@ export default function Content() {
       </div>
 
       <Link href="/login" className={styles.button}>
-        <span>Get Started (Free)</span>
+        <span>
+          {user && !loading ? "Continue Talking" : "Get Started (Free)"}
+        </span>
       </Link>
 
       <div className={styles.preview}></div>

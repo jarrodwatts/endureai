@@ -7,6 +7,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "@/lib/mui/createEmotionCache";
 import theme from "@/lib/mui/theme";
 import "@/styles/globals.css";
+import AuthProvider from "@/lib/context/AuthContext";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -34,10 +35,13 @@ export default function MyApp(props: MyAppProps) {
         <link rel="shortcut icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <Component {...pageProps} />
+        <AuthProvider>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </CacheProvider>
   );

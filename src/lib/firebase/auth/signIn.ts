@@ -9,8 +9,6 @@ export default async function signIn(provider: GoogleAuthProvider) {
   try {
     const result = await signInWithPopup(auth, provider);
 
-    console.log(result);
-
     // If the user is new, create a document in the users collection
     if (
       result.user.metadata.creationTime === result.user.metadata.lastSignInTime

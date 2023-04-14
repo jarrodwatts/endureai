@@ -6,9 +6,11 @@ import Image from "next/image";
 import signIn from "@/lib/firebase/auth/signIn";
 import { GoogleAuthProvider } from "firebase/auth";
 import { useRouter } from "next/router";
+import { useAuthContext } from "@/lib/context/AuthContext";
 
 export default function Login() {
   const router = useRouter();
+  const { user } = useAuthContext();
 
   async function handleLogin(provider: GoogleAuthProvider) {
     const result = await signIn(provider);
@@ -17,6 +19,9 @@ export default function Login() {
       router.push(`/setup`);
     }
   }
+
+  // TODO: Make this a server-side check.
+  // if (user) router.push(`/talk`);
 
   return (
     <div className={styles.base}>
