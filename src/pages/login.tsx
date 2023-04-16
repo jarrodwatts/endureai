@@ -1,52 +1,23 @@
-import { Button, Container, Typography } from "@mui/material";
 import React from "react";
-import styles from "../styles/Login.module.css";
 import Header from "@/components/landing/Header/Header";
-import Image from "next/image";
-import signIn from "@/lib/firebase/auth/signIn";
-import { GoogleAuthProvider } from "firebase/auth";
+import LoginComponent from "@/components/Login/Login";
+import { Container } from "@mui/material";
 import { useRouter } from "next/router";
 import { useAuthContext } from "@/lib/context/AuthContext";
+import styles from "../styles/Login.module.css";
 
-export default function Login() {
+export default function LoginPage() {
   const router = useRouter();
   const { user } = useAuthContext();
 
-  async function handleLogin(provider: GoogleAuthProvider) {
-    const result = await signIn(provider);
-
-    if (result !== null) {
-      router.push(`/setup`);
-    }
-  }
-
   // TODO: Make this a server-side check.
-  // if (user) router.push(`/talk`);
+  if (user) router.push(`/talk`);
 
   return (
     <div className={styles.base}>
       <Header />
       <Container maxWidth="sm">
-        <div className={styles.container}>
-          <Image alt="logo" src="/logo.png" width={32} height={32} />
-          <Typography variant="h2" className={styles.title}>
-            Sign up / Log in
-          </Typography>
-          <Typography variant="body2" className={styles.caption}>
-            Let&rsquo;s get you signed in to start chatting with Endure.
-          </Typography>
-          <Button
-            variant="contained"
-            color="inherit"
-            startIcon={
-              <Image alt="logo" src="/google.png" width={24} height={24} />
-            }
-            className={styles.button}
-            onClick={() => handleLogin(new GoogleAuthProvider())}
-          >
-            Sign In with Google
-          </Button>
-        </div>
+        <LoginComponent />
       </Container>
     </div>
   );

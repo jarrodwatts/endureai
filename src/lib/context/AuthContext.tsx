@@ -24,6 +24,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [isPremium, setIsPremium] = useState<boolean | null>(null);
 
   useEffect(() => {
+    if (loading) return;
+
     if (user) {
       auth.currentUser?.getIdTokenResult().then((idTokenResult) => {
         if (
@@ -36,7 +38,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         }
       });
     }
-  }, [user]);
+  }, [loading, user]);
 
   return (
     <AuthContext.Provider value={{ user, loading, isPremium }}>

@@ -23,28 +23,33 @@ export default function Header() {
           Endure
         </Link>
 
-        {
-          // if route is /
-          router.pathname === "/" && (
-            <ul className={styles.items}>
-              <li className={styles.item}>
-                <a href="#features" className={styles.itemLink}>
-                  Features
-                </a>
-              </li>
-              <li className={styles.item}>
-                <a href="#pricing" className={styles.itemLink}>
-                  Pricing
-                </a>
-              </li>
-            </ul>
-          )
-        }
-        {user && !loading && (
-          <Link href="/profile">
-            <AccountCircleIcon className={styles.profileIcon} color="primary" />
-          </Link>
-        )}
+        <div className={styles.right}>
+          {
+            // if route is /
+            router.pathname === "/" && (
+              <ul className={styles.items}>
+                <li className={styles.item}>
+                  <a href="#features" className={styles.itemLink}>
+                    Features
+                  </a>
+                </li>
+                <li className={styles.item}>
+                  <a href="#pricing" className={styles.itemLink}>
+                    Pricing
+                  </a>
+                </li>
+              </ul>
+            )
+          }
+          {user && !loading && (
+            <Link href="/profile">
+              <AccountCircleIcon
+                className={styles.profileIcon}
+                color="primary"
+              />
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );

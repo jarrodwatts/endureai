@@ -1,0 +1,85 @@
+.base {
+  height: 100%;
+  min-height: 100vh;
+  background: linear-gradient(360deg, #b86da5 0%, #4f4a9c 100%);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation-duration: var(--animate-duration);
+  animation-fill-mode: both;
+  color: #fff;
+  animation-name: fadeIn;
+}
+
+.chatContainer {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 32px;
+}
+
+.messagesContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  width: 100%;
+  min-height: 60vh;
+  max-height: 60vh;
+  overflow-y: scroll;
+  gap: 16px;
+  padding: 8px;
+}
+
+.message {
+  color: #010101;
+  text-align: left;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.received {
+  background-color: #d7d8d8;
+  /* appear on left side of flexbox if received */
+  align-self: flex-start;
+}
+
+.sent {
+  background-color: #fff;
+  /* appear on right side of flexbox if sent */
+  align-self: flex-end;
+}
+
+/* Scrollbar */
+/* Hide the default scrollbar */
+.messagesContainer {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Create a custom scrollbar */
+.messagesContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Style the scrollbar track */
+.messagesContainer::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+/* Style the scrollbar thumb */
+.messagesContainer::-webkit-scrollbar-thumb {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* On hover, add a darker background color */
+.messagesContainer::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

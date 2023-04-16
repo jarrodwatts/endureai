@@ -7,9 +7,9 @@ const addFirestoreDocument = async (
 ) => {
   try {
     const collectionRef = collection(firestore, collectionPath);
-    const reuslt = await addDoc(collectionRef, data);
+    const result = await addDoc(collectionRef, data);
 
-    return reuslt;
+    return result;
   } catch (error) {
     console.error("Error adding document: ", error);
   }

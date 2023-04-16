@@ -24,6 +24,7 @@
     "firebase": "^9.19.1",
     "firebase-admin": "^11.6.0",
     "next": "latest",
+    "openai": "^3.2.1",
     "react": "latest",
     "react-dom": "latest",
     "react-firebase-hooks": "^5.1.1",
