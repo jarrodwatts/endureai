@@ -32,6 +32,7 @@ export default async function sendRequest(
   if (completion.data.choices.length > 0) {
     return res.status(200).json(completion.data.choices[0]);
   } else {
+    console.error("Could not find completion.", completion.data);
     return res.status(500).json({ error: "No completion found." });
   }
 }
