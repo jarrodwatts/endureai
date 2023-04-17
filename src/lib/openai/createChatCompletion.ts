@@ -24,6 +24,10 @@ export default async function createChatCompletion(
   });
 
   if (!response.ok) {
+    const error = await response.json();
+
+    console.error("Failed to create chat completion", error);
+
     throw new Error("Failed to create chat completion");
   }
 
