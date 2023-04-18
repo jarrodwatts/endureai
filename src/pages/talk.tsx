@@ -1,4 +1,4 @@
-import { Container, Typography } from "@mui/material";
+import { Container, Fade, Typography } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Talk.module.css";
 import Header from "@/components/landing/Header/Header";
@@ -27,6 +27,9 @@ export default function Talk() {
   // Store the state of the new message user is typing into Chatbox
   const [newMessage, setNewMessage] = useState<string>("");
 
+  // Show "typing" message while OpenAI is generating a response
+  const [typing, setTyping] = useState<boolean>(false);
+
   // Ref to update scroll position of messages container
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -37,25 +40,38 @@ export default function Talk() {
   }, [messages]);
 
   async function submitNewMessage() {
-    if (!user) {
+    if (!user || !userData) {
       console.log("User not logged in");
+      // TODO: toast error
+      alert("Login and set up your account to continue.");
       router.push(`/login?redirect=${router.asPath}`);
       return;
     }
 
-    console.log("Submitting message.");
+    setTyping(true);
 
-    console.log(systemPrompts[userData?.botType || "Therapist"]);
+    try {
+      console.log("Submitting message.");
 
-    const result = await createChatCompletion(
-      // systemMessage: Based on what the user selected as their chatbot option.
-      systemPrompts[userData?.botType || "Therapist"],
-      messages,
-      newMessage,
-      user.uid
-    );
+      console.log(systemPrompts[userData?.botType || "Therapist"]);
 
-    console.log("result", result);
+      const result = await createChatCompletion(
+        // systemMessage: Based on what the user selected as their chatbot option.
+        systemPrompts[userData?.botType || "Therapist"],
+        messages,
+        newMessage,
+        userData,
+        () => setTyping(false)
+      );
+
+      console.log("result", result);
+    } catch (error) {
+      // TODO: Toast error
+      console.error(error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setTyping(false);
+    }
   }
 
   return (
@@ -77,18 +93,37 @@ export default function Talk() {
                   <Typography variant="body1">Loading...</Typography>
                 ) : (
                   messages.map((message) => (
-                    <div
-                      className={`${styles.message} ${
-                        message.from === "user" ? styles.sent : styles.received
-                      }`}
-                      key={message.id}
-                    >
-                      <Typography variant="body1">
-                        {message.contents}
-                      </Typography>
-                    </div>
+                    <Fade in={true} key={message.id}>
+                      <div
+                        className={`${styles.message} ${
+                          message.from === "user"
+                            ? styles.sent
+                            : styles.received
+                        }`}
+                        key={message.id}
+                      >
+                        <Typography variant="body1">
+                          {message.contents}
+                        </Typography>
+                      </div>
+                    </Fade>
                   ))
                 )}
+
+                {
+                  // Show "typing" message while OpenAI is generating a response
+                  typing && (
+                    <Fade
+                      in={typing}
+                      // dont fade out
+                      timeout={{ enter: 250, exit: 0 }}
+                    >
+                      <div className={`${styles.message} ${styles.received}`}>
+                        <Typography variant="body1">Typing...</Typography>
+                      </div>
+                    </Fade>
+                  )
+                }
               </div>
 
               <ChatBox
