@@ -5,22 +5,55 @@ import { Button, Container, TextField, Typography } from "@mui/material";
 import { useAuthContext } from "@/lib/context/AuthContext";
 import useUserData from "@/lib/firebase/firestore/useUserDocument";
 import createPortalUrl from "@/lib/stripe/createPortalUrl";
+import { useRouter } from "next/router";
+import createCheckoutSession from "@/lib/stripe/createCheckoutSession";
+import updateFirestoreDocument from "@/lib/firebase/firestore/updateFirestoreDocument";
 
 type Props = {};
 
 export default function Profile({}: Props) {
+  const router = useRouter();
   const { loading: loadingAuth, user: authUser, isPremium } = useAuthContext();
   const { loading: loadingUserData, data: userData } = useUserData();
+
+  // Update profile
   const [about, setAbout] = useState<string>("");
+  const [botType, setBotType] = useState<string | null>(null);
 
   // As userData comes in, set the about field.
   useEffect(() => {
     if (userData) setAbout(userData.about || "");
+    if (userData) setBotType(userData.botType || null);
   }, [userData]);
 
   async function manageSub() {
     const result = await createPortalUrl();
+
+    if (!result) {
+      return alert("Error creating portal url. Please try again later.");
+    }
+
+    // send user to the url
+    // @ts-ignore
+    window.location.assign(result.url as string);
     console.log(result);
+  }
+
+  async function handleBeginCheckout() {
+    if (!authUser) return router.push("/login");
+    await createCheckoutSession(authUser?.uid);
+  }
+
+  async function saveProfile() {
+    if (!authUser) return router.push("/login");
+
+    const result = await updateFirestoreDocument(`/users/${authUser?.uid}`, {
+      about,
+      botType,
+    });
+
+    // TODO: Toast.
+    alert("Profile updated!");
   }
 
   return (
@@ -34,18 +67,8 @@ export default function Profile({}: Props) {
             <Typography variant="body1">Loading...</Typography>
           ) : (
             <div className={styles.profile}>
-              <Typography variant="h2">Profile Information</Typography>
-
-              <Typography variant="body1">
-                <b>Name</b>: {authUser?.displayName}
-              </Typography>
-
-              <Typography variant="body1">
-                <b>Email</b>: {authUser?.email}
-              </Typography>
-
               <div style={{ width: "100%" }}>
-                <Typography variant="body1">
+                <Typography variant="body1" sx={{ mb: 1 }}>
                   <b>About you</b>
                 </Typography>
 
@@ -77,20 +100,96 @@ export default function Profile({}: Props) {
                     },
                   }}
                 />
+
+                <Typography variant="body1" sx={{ mt: 3, mb: 1 }}>
+                  <b>Your AI Behaviour</b>
+
+                  {/* Radio choice between Therapist, Psychologist, Coach */}
+
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                    }}
+                  >
+                    <div>
+                      <input
+                        type="radio"
+                        id="therapist"
+                        name="ai-behaviour"
+                        value="Therapist"
+                        checked={botType === "Therapist"}
+                        onChange={(e) => setBotType(e.target.value)}
+                      />
+                      <label htmlFor="therapist">Therapist</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="psychologist"
+                        name="ai-behaviour"
+                        value="Psychologist"
+                        checked={botType === "Psychologist"}
+                        onChange={(e) => setBotType(e.target.value)}
+                      />
+                      <label htmlFor="psychologist">Psychologist</label>
+                    </div>
+                    <div>
+                      <input
+                        type="radio"
+                        id="coach"
+                        name="ai-behaviour"
+                        value="Coach"
+                        checked={botType === "Coach"}
+                        onChange={(e) => setBotType(e.target.value)}
+                      />
+                      <label htmlFor="coach">Coach</label>
+                    </div>
+                  </div>
+                </Typography>
               </div>
+
+              <Button
+                onClick={saveProfile}
+                variant="contained"
+                color="primary"
+                sx={{ height: 48 }}
+              >
+                Save Profile
+              </Button>
+
+              <hr
+                style={{
+                  width: "100%",
+                  opacity: 0.1,
+                  marginTop: 32,
+                }}
+              />
 
               <Typography variant="h2" sx={{ mt: 3 }}>
                 Plan
               </Typography>
 
-              <Button
-                onClick={manageSub}
-                variant="contained"
-                color="primary"
-                sx={{ height: 48 }}
-              >
-                Manage Subscription
-              </Button>
+              {isPremium ? (
+                <Button
+                  onClick={manageSub}
+                  variant="contained"
+                  color="primary"
+                  sx={{ height: 48 }}
+                >
+                  Manage Subscription
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleBeginCheckout}
+                  variant="contained"
+                  color="primary"
+                  sx={{ height: 48 }}
+                >
+                  Upgrade to Premium
+                </Button>
+              )}
             </div>
           )}
         </div>

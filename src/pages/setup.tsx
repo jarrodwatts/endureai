@@ -65,7 +65,6 @@ export default function Setup() {
   }
 
   async function handleBeginCheckout() {
-    console.error("User is not logged in");
     if (!user) return router.push("/login");
 
     await createCheckoutSession(user?.uid);
