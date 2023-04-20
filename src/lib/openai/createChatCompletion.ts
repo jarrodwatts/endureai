@@ -42,8 +42,6 @@ export default async function createChatCompletion(
       }),
     });
 
-    console.log(response);
-
     if (!response.ok) {
       console.log("response failed. response:", response);
 
@@ -55,8 +53,6 @@ export default async function createChatCompletion(
     }
 
     const data = (await response.json()) as GeneratedResponse;
-
-    console.log("data on client:", data);
 
     try {
       // Add AI message to Firestore

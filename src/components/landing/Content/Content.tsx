@@ -13,8 +13,6 @@ export default function Content() {
   const smScreen = useMediaQuery(theme.breakpoints.only("sm")); // sm only
   const decentScreen = useMediaQuery(theme.breakpoints.up("md")); // md only
 
-  console.log({ mobileScreen, smScreen, decentScreen });
-
   return (
     <div className={styles.content}>
       <div className={styles.description}>

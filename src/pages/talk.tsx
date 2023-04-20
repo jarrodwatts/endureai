@@ -22,7 +22,6 @@ export default function Talk() {
 
   // Load documents from the "messages" collection sent by this user uid
   const { messages, loading } = useMessages();
-  console.log(messages);
 
   // Store the state of the new message user is typing into Chatbox
   const [newMessage, setNewMessage] = useState<string>("");
@@ -41,7 +40,6 @@ export default function Talk() {
 
   async function submitNewMessage() {
     if (!user || !userData) {
-      console.log("User not logged in");
       // TODO: toast error
       alert("Login and set up your account to continue.");
       router.push(`/login?redirect=${router.asPath}`);
@@ -51,10 +49,6 @@ export default function Talk() {
     setTyping(true);
 
     try {
-      console.log("Submitting message.");
-
-      console.log(systemPrompts[userData?.botType || "Therapist"]);
-
       const result = await createChatCompletion(
         // systemMessage: Based on what the user selected as their chatbot option.
         systemPrompts[userData?.botType || "Therapist"],
@@ -63,8 +57,6 @@ export default function Talk() {
         userData,
         () => setTyping(false)
       );
-
-      console.log("result", result);
     } catch (error) {
       // TODO: Toast error
       console.error(error);
