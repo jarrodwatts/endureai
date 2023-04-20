@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styles from "./Content.module.css";
 import { useAuthContext } from "@/lib/context/AuthContext";
+import Image from "next/image";
+import { Typography } from "@mui/material";
 
 export default function Content() {
   const { user, loading } = useAuthContext();
@@ -20,7 +22,18 @@ export default function Content() {
         </span>
       </Link>
 
-      <div className={styles.preview}></div>
+      <div className={styles.preview}>
+        <Image
+          src={"/test2.png"}
+          alt="Endure AI Hero Image"
+          width={820}
+          height={480}
+          quality={100}
+        />
+      </div>
+      <Typography variant="body2" className={styles.subcaption}>
+        A real conversation with Endure AI.
+      </Typography>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, getAuth } from "firebase/auth";
 import { Firestore, getFirestore } from "firebase/firestore";
 
@@ -6,6 +6,7 @@ import { Firestore, getFirestore } from "firebase/firestore";
 function initializeFirebaseClient(): {
   db: Firestore;
   auth: Auth;
+  firebaseApp: FirebaseApp;
 } {
   const firebaseApp = initializeApp({
     apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -22,10 +23,12 @@ function initializeFirebaseClient(): {
   return {
     db,
     auth,
+    firebaseApp,
   };
 }
 
 const firestore = initializeFirebaseClient().db;
 const auth = initializeFirebaseClient().auth;
+const firebaseApp = initializeFirebaseClient().firebaseApp;
 
-export { firestore, auth };
+export { firestore, auth, firebaseApp };

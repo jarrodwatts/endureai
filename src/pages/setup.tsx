@@ -23,7 +23,7 @@ const formQuestions = [
 
   {
     title: "Upgrade to Premium?",
-    description: "We offer a free 7 day trial period. No credit card required.",
+    description: "Your first 30 messages are free, no credit card required.",
   },
 ];
 
@@ -31,25 +31,25 @@ const botOptions = [
   {
     title: "Therapist",
     description:
-      "Empathetic, patient, and have strong communication skills to help individuals cope with mental and emotional issues.",
+      "Empathetic, patient, with strong communication skills to help individuals cope with mental and emotional issues.",
   },
   {
     title: "Psychologist",
     description:
-      "Analytical, detail-oriented, and have strong research skills to understand human behavior and develop treatment plans",
+      "Analytical, detail-oriented, with strong research skills to understand human behavior and propose potential solutions.",
   },
   {
     title: "Coach",
     description:
-      "Motivational, goal-oriented, and have strong communication skills to help individuals improve their personal or professional lives",
+      "Motivational, goal-oriented, with strong communication skills to help individuals improve their personal or professional lives.",
   },
 ];
 
 export default function Setup() {
   const [user] = useAuthState(auth);
-  const [about, setAbout] = useState<string>("");
   const [phase, setPhase] = useState<1 | 2 | 3>(1);
   const router = useRouter();
+  const [about, setAbout] = useState<string>("");
 
   async function submitInformation(fieldsToUpdate: { [key: string]: any }) {
     console.error("User is not logged in");
@@ -228,7 +228,7 @@ export default function Setup() {
                   onClick={() => router.push("/talk")}
                   className={styles.nextButton}
                 >
-                  Begin 7 Day Trial
+                  Begin Trial
                 </Button>
 
                 <Button

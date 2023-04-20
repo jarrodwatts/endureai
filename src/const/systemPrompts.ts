@@ -31,8 +31,8 @@ const lifeCoachPrompt =
 const systemPrompts: SystemPrompts = {
   Therapist: preamble + therapistPrompt,
   Psychologist: preamble + psychologistPrompt,
-  Coach: preamble + coachPrompt,
+  Coach: preamble + lifeCoachPrompt,
 };
 
-export { therapistPrompt, psychologistPrompt, coachPrompt };
+export { therapistPrompt, psychologistPrompt, lifeCoachPrompt };
 export default systemPrompts;

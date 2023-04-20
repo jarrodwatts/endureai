@@ -18,10 +18,14 @@ export default async function sendRequest(
 
     const openai = new OpenAIApi(configuration);
 
+    // TODO: Check if the user has exceeded their message limit for the month.
+    // If premium: messages for month > 300 * 2 (2 messages - one from ai one from user)
+    // If free: messages for month > 25?
+
     const messagesToSendAsContext = await getMaxMessagesForTokenLimit(
       previousMessages,
       aboutUser,
-      4096 - encode(systemMessage).length - encode(newMessage).length - 500 // 100 is a buffer to account for random shit
+      4096 - encode(systemMessage).length - encode(newMessage).length - 500 // 500 is a buffer to account for random shit
     );
 
     console.log("Requesting completion from OPENAI");

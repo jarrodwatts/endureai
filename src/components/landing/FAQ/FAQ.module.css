@@ -1,0 +1,86 @@
+.faq {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--white);
+  color: var(--black);
+}
+
+.content {
+  color: var(--black);
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: var(--largePadding) 4px;
+  text-align: center;
+}
+
+.desc {
+  color: var(--black);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.warningList {
+  margin-bottom: 32px;
+}
+
+.warningItem {
+  text-align: left;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.disclaimer {
+  color: var(--black);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  text-align: left;
+  margin-top: 32px;
+}
+
+.content h2 {
+  color: var(--black);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  margin-bottom: 16px;
+}
+
+.content h2 img {
+  color: var(--white);
+  text-align: center;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 44px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-right: 12px;
+}

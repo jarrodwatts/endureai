@@ -114,13 +114,21 @@
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
   animation-name: slideInUp;
-  max-width: 720px;
+  max-width: 820px;
   max-height: 480px;
   margin: var(--mediumPadding) auto;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.24), 0px 24px 40px rgba(0, 0, 0, 0.24);
   border-radius: 40px;
-  background: var(--white);
   overflow: hidden;
+}
+
+.subcaption {
+  margin-top: -52px;
+  opacity: 0.75;
+  font-size: 0.85rem;
+  animation-duration: 5.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
 }
 
 .preview img {

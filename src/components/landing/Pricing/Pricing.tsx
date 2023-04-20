@@ -16,21 +16,12 @@ export default function Pricing() {
               </h3>
 
               <ul className={styles.features}>
-                <li>something</li>
-                <li>something</li>
-                <li>something</li>
-                <li>something</li>
+                <li>
+                  <strong>600</strong> total messages per month
+                </li>
+                <li>Profile context</li>
+                <li>Conversation history context</li>
               </ul>
-            </div>
-
-            <div className={styles.btn}>
-              <a
-                id="price-link"
-                href="https://diagram.com/auth/redirect/billing/Endure?f=Endure"
-                className={styles.button}
-              >
-                Start free trial
-              </a>
             </div>
           </div>
         </div>

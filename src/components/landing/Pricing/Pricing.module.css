@@ -190,6 +190,8 @@
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
+  margin-top: 32px;
+  margin-bottom: 0px;
 }
 
 .plans .plan ul li {

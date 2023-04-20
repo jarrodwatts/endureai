@@ -182,35 +182,11 @@
 }
 
 .wizard {
-  --black: #333333;
-  --white: #ffffff;
-  --gray: #edeef0;
-  --blue: #18a0fb;
-  --green: #1bc47d;
-  --yellow: #f2bd00;
-  --orange: #f97f0f;
-  --red: #f24822;
-  --purple: #7b61ff;
-  --teal: #00b5ce;
-  --pink: #ee46d3;
-  --largePadding: 128px;
-  --mediumPadding: 64px;
-  --smallPadding: 32px;
-  --animate-duration: 1s;
-  --animate-delay: 1s;
-  --animate-repeat: 1;
-  font-family: "Satoshi", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
   color: var(--white);
   padding: 0;
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  background-image: -webkit-image-set(
-    url(https://diagram.imgix.net/Endure/wizard-min.png?s=50937543a0a9e3ad1656256d6c6224f8) 1x,
-    url(https://diagram.imgix.net/Endure/wizard@2x-min.png?s=837eef9f0fcebeebce2428664748512b) 2x,
-    url(https://diagram.imgix.net/Endure/wizard@3x-min.png?s=ccd13de761da8f2513e8a0e288e84d5e) 3x
-  );
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: contain;

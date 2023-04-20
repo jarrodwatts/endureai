@@ -18,22 +18,6 @@ export default function Footer() {
             <span>Get Started for Free</span>
           </Link>
         </div>
-
-        <footer className={styles.footer}>
-          <div className={styles.inner}>
-            <Link href="/" className={styles.logo}>
-              Endure
-            </Link>
-            <ul className={styles.breadcrumbs}>
-              <li>
-                <a href="https://diagram.com/privacy">Privacy</a>
-              </li>
-              <li>
-                <a href="https://diagram.com/terms">Terms</a>
-              </li>
-            </ul>
-          </div>
-        </footer>
       </section>
     </>
   );
