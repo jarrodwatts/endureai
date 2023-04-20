@@ -21,8 +21,10 @@ export default async function sendRequest(
     const messagesToSendAsContext = await getMaxMessagesForTokenLimit(
       previousMessages,
       aboutUser,
-      4096 - encode(systemMessage).length - encode(newMessage).length - 100 // 100 is a buffer to account for random shit
+      4096 - encode(systemMessage).length - encode(newMessage).length - 500 // 100 is a buffer to account for random shit
     );
+
+    console.log("Requesting completion from OPENAI");
 
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -39,8 +41,6 @@ export default async function sendRequest(
         { role: "user", content: newMessage },
       ],
     });
-
-    console.log(completion);
 
     if (completion.data.choices.length > 0) {
       return res.status(200).json(completion.data.choices[0]);

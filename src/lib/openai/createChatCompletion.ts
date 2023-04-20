@@ -3,6 +3,7 @@ import GeneratedResponse from "@/types/openai/GeneratedResponse";
 import addFirestoreDocument from "../firebase/firestore/addFirestoreDocument";
 import { serverTimestamp } from "firebase/firestore";
 import User from "@/types/firestore/User";
+import removeRoleFromResponse from "../format/removeRoleFromResponse";
 
 export default async function createChatCompletion(
   systemMessage: string,
@@ -36,7 +37,7 @@ export default async function createChatCompletion(
       body: JSON.stringify({
         systemMessage,
         previousMessages,
-        newMessage,
+        newMessage: `Client: ${newMessage}`,
         aboutUser: user.about || "",
       }),
     });
@@ -61,7 +62,7 @@ export default async function createChatCompletion(
       // Add AI message to Firestore
       const result2 = await addFirestoreDocument("messages", {
         uid: user.uid,
-        contents: data.message.content,
+        contents: removeRoleFromResponse(data.message.content),
         from: "ai",
         createdAt: serverTimestamp(),
       });
