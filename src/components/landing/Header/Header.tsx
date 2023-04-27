@@ -24,6 +24,10 @@ export default function Header() {
         </Link>
 
         <div className={styles.right}>
+          <Link href="https://discord.gg/2vRZRKAFZR" target="_blank">
+            <Image src={"/discord.png"} alt="Discord" width={32} height={32} />
+          </Link>
+
           {user && !loading && (
             <Link href="/profile">
               <AccountCircleIcon

@@ -83,9 +83,6 @@ export default function FAQ() {
               if this is a requested feature.
               <br />
               <br />
-              For now, you can delete your conversation history at any time,
-              which is a <strong>hard delete</strong> from the database that I
-              cannot recover. Summary:
             </Typography>
             <ul>
               <li>

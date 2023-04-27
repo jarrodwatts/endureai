@@ -11,6 +11,7 @@
   padding: var(--largePadding) 4px;
   text-align: center;
   padding-top: var(--mediumPadding);
+  margin-top: 1%;
 }
 
 .description {
@@ -49,6 +50,7 @@
   margin: 12px auto var(--mediumPadding);
   opacity: 0.64;
   margin-bottom: var(--smallPadding);
+  margin-top: 16px;
 }
 
 .button {
@@ -114,8 +116,6 @@
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
   animation-name: slideInUp;
-  max-width: 820px;
-  max-height: 480px;
   margin: var(--mediumPadding) auto;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.24), 0px 24px 40px rgba(0, 0, 0, 0.24);
   border-radius: 40px;

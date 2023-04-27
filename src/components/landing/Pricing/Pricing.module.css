@@ -74,10 +74,11 @@
   vertical-align: middle;
   border-radius: 40px;
   background: #fff;
-  width: 55%;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12), 0px 24px 40px rgba(0, 0, 0, 0.12);
   position: relative;
   z-index: 2;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 
 .discounted {

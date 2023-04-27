@@ -4,7 +4,7 @@
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  padding: var(--mediumPadding) 0;
+  padding: 2em 0;
   animation-duration: var(--animate-duration);
   animation-fill-mode: both;
   /* animation-name: fadeInDown; */
@@ -100,12 +100,12 @@
   width: 32px;
   height: 32px;
   fill: #fff;
-  margin-bottom: -10px;
 }
 
 .right {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 24px;
 }
