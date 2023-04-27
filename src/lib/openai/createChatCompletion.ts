@@ -4,13 +4,15 @@ import addFirestoreDocument from "../firebase/firestore/addFirestoreDocument";
 import { serverTimestamp } from "firebase/firestore";
 import User from "@/types/firestore/User";
 import removeRoleFromResponse from "../format/removeRoleFromResponse";
+import { User as FirebaseUser } from "firebase/auth";
 
 export default async function createChatCompletion(
   systemMessage: string,
   // previousMessages should be sorted by createdAt
   previousMessages: Message[],
   newMessage: string,
-  user: User,
+  user: FirebaseUser,
+  userData: User,
   removeLoadingMessage?: () => void
 ) {
   try {
@@ -33,14 +35,39 @@ export default async function createChatCompletion(
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        // Auth Header: Current Firebase user token ID
+        Authorization: `Bearer ${await user.getIdToken()}`,
       },
       body: JSON.stringify({
         systemMessage,
         previousMessages,
         newMessage: `Client: ${newMessage}`,
-        aboutUser: user.about || "",
+        aboutUser: userData.about || "",
       }),
     });
+
+    // Handle different responses
+
+    // 401: Require login
+    if (response.status === 401) {
+      alert(
+        "Something went wrong authenticating your request. Please refresh the page and try again."
+      );
+    }
+
+    // 403: Exceeded message limit
+    if (response.status === 403) {
+      alert(
+        "You have exceeded your message limit for the month. Please upgrade to premium to send more messages."
+      );
+    }
+
+    // 500: OpenAI error
+    if (response.status === 500) {
+      alert(
+        "Something went wrong communicating with OpenAI. Please refresh the page and try again."
+      );
+    }
 
     if (!response.ok) {
       console.log("response failed. response:", response);

@@ -54,13 +54,13 @@ export default function Talk() {
         systemPrompts[userData?.botType || "Therapist"],
         messages,
         newMessage,
+        user,
         userData,
         () => setTyping(false)
       );
     } catch (error) {
       // TODO: Toast error
       console.error(error);
-      alert("Something went wrong. Please try again later.");
     } finally {
       setTyping(false);
     }

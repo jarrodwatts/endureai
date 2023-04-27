@@ -1,9 +1,10 @@
 import { Configuration, OpenAIApi } from "openai";
-import type { NextApiRequest, NextApiResponse } from "next";
-import type Message from "@/types/firestore/Message";
 import { convertMessageToPromptHelp } from "@/lib/format/convertMessageToPromptHelp";
 import getMaxMessagesForTokenLimit from "@/lib/openai/getMaxMessagesForTokenLimit";
+import initializeFirebaseServer from "@/lib/firebase/initFirebaseServer";
 import { encode } from "gpt-3-encoder";
+import type { NextApiRequest, NextApiResponse } from "next";
+import type Message from "@/types/firestore/Message";
 
 export default async function sendRequest(
   req: NextApiRequest,
@@ -11,6 +12,21 @@ export default async function sendRequest(
 ) {
   try {
     const { systemMessage, previousMessages, newMessage, aboutUser } = req.body;
+    const authorizationHeader = req.headers.authorization;
+
+    if (!authorizationHeader) {
+      return res.status(401).json({ error: "No authorization header." });
+    }
+
+    const { auth, db } = initializeFirebaseServer();
+
+    const decodedToken = await auth.verifyIdToken(
+      authorizationHeader.split("Bearer ")[1]
+    );
+
+    if (!decodedToken) {
+      return res.status(401).json({ error: "Invalid token." });
+    }
 
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
@@ -18,9 +34,17 @@ export default async function sendRequest(
 
     const openai = new OpenAIApi(configuration);
 
-    // TODO: Check if the user has exceeded their message limit for the month.
-    // If premium: messages for month > 300 * 2 (2 messages - one from ai one from user)
-    // If free: messages for month > 25?
+    const user = await auth.getUser(decodedToken.uid);
+    const isPremium = user.customClaims?.stripeRole === "premium";
+    const numAllowedMessages = isPremium ? 600 : 30;
+
+    // TODO: This isn't secure, it uses the messages passed in the request body.
+    // If someone were to modify the request body, they could send more messages than they are allowed.
+    if (previousMessages.length > numAllowedMessages) {
+      return res.status(403).json({
+        error: `You have exceeded your message limit for the month. Please upgrade to premium to send more messages.`,
+      });
+    }
 
     const messagesToSendAsContext = await getMaxMessagesForTokenLimit(
       previousMessages,

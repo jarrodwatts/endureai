@@ -23,6 +23,9 @@ export default function ChatBox({ message, setMessage, onSubmit }: Props) {
     <form
       onSubmit={(event) => {
         event.preventDefault();
+
+        if (!message) return;
+
         handleSubmit();
       }}
       className={styles.form}

@@ -23,6 +23,12 @@ const useMessages = () => {
       const q = query(
         collection(firestore, "messages"),
         where("uid", "==", currentUser.uid),
+        // Created in the last 30 days
+        where(
+          "createdAt",
+          ">=",
+          new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+        ),
         orderBy("createdAt", "asc")
       );
 
